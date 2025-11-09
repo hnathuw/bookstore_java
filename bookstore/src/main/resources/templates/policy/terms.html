@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${title + ' - BookStore'}">IceBearT</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/css/coquette-style.css}">
+</head>
+<body><div class="top-header">
+    <div class="container text-center"><small><i class="fas fa-heart"></i> IceBearT</small></div>
+</div>
+<header class="main-header">
+    <div class="container text-center"><a href="/" class="logo"><i class="fas fa-book-heart"></i> IceBearT</a></div>
+</header>
+<nav class="main-nav">
+    <div class="container text-center">
+        <a href="/"><i class="fas fa-home"></i> Trang chủ</a>
+        <a href="/books"><i class="fas fa-book"></i> Sách</a>
+        <a href="/policy/return"><i class="fas fa-undo"></i> Đổi trả</a>
+        <a href="/policy/privacy"><i class="fas fa-shield-alt"></i> Bảo mật</a>
+        <a href="/policy/terms"><i class="fas fa-file-contract"></i> Điều khoản</a>
+    </div>
+</nav>
+<div class="container my-5">
+    <div class="card-coquette" style="max-width: 900px; margin: 0 auto;">
+        <h1 class="section-title text-center"><i class="fas fa-file-contract"></i> Điều Khoản Sử Dụng</h1>
+        <p class="lead text-center">Quy định sử dụng dịch vụ của IceBearT</p>
+        
+        <h3><i class="fas fa-user-check"></i> Tài khoản:</h3>
+        <ul>
+            <li>Thông tin đăng ký phải chính xác</li>
+            <li>Bạn chịu trách nhiệm bảo mật tài khoản</li>
+        </ul>
+        
+        <h3><i class="fas fa-shopping-cart"></i> Mua hàng:</h3>
+        <ul>
+            <li>Giá cả có thể thay đổi mà không báo trước</li>
+            <li>Đơn hàng được xác nhận qua email</li>
+            <li>Chúng tôi có quyền từ chối đơn hàng bất thường</li>
+        </ul>
+        
+        <h3><i class="fas fa-copyright"></i> Bản quyền:</h3>
+        <ul>
+            <li>Nội dung website thuộc bản quyền IceBearT</li>
+            <li>Không sao chép, phân phối trái phép</li>
+        </ul>
+        
+        <h3><i class="fas fa-ban"></i> Hành vi cấm:</h3>
+        <ul>
+            <li>Gian lận, giả mạo</li>
+            <li>Spam, phá hoại hệ thống</li>
+            <li>Vi phạm pháp luật</li>
+        </ul>
+        
+        <div class="alert alert-info">
+            <h5><i class="fas fa-gavel"></i> Điều khoản có hiệu lực từ 01/01/2025</h5>
+        </div>
+        
+        <div class="text-center mt-4">
+            <a href="/" class="btn btn-pink"><i class="fas fa-home"></i> Về trang chủ</a>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script></body></html>

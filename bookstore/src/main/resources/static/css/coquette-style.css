@@ -1,0 +1,650 @@
+/* 🎀 BOOKSTORE COQUETTE - CSS HOÀN CHỈNH 
+   Màu chủ đạo: Trắng, Hồng Baby, Xanh Baby
+   Áp dụng cho cả Frontend và Admin
+*/
+
+:root {
+    /* Màu chính - Coquette Theme */
+    --pink-baby: #FFB6C1;
+    --blue-baby: #A8D5E2;
+    --white: #FFFFFF;
+    --soft-pink: #FFE4E9;
+    --soft-blue: #E0F4F9;
+    
+    /* Màu phụ */
+    --text-dark: #2C3E50;
+    --text-gray: #7F8C8D;
+    --border: #E8E8E8;
+    --success: #52C41A;
+    --danger: #FF4D4F;
+    --warning: #FAAD14;
+    
+    /* Shadows */
+    --shadow-sm: 0 2px 8px rgba(255, 182, 193, 0.15);
+    --shadow-md: 0 4px 16px rgba(255, 182, 193, 0.2);
+    --shadow-lg: 0 8px 24px rgba(255, 182, 193, 0.25);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--text-dark);
+    background: linear-gradient(135deg, var(--soft-pink) 0%, var(--soft-blue) 100%);
+    min-height: 100vh;
+}
+
+/* =============== TYPOGRAPHY =============== */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--text-dark);
+    font-weight: 600;
+}
+
+a {
+    text-decoration: none;
+    color: var(--pink-baby);
+    transition: all 0.3s;
+}
+
+a:hover {
+    color: var(--blue-baby);
+}
+
+/* =============== BUTTONS =============== */
+.btn {
+    padding: 10px 24px;
+    border-radius: 20px;
+    border: none;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-pink {
+    background: linear-gradient(135deg, var(--pink-baby) 0%, #FF9EAE 100%);
+    color: white;
+    box-shadow: var(--shadow-sm);
+}
+
+.btn-pink:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-blue {
+    background: linear-gradient(135deg, var(--blue-baby) 0%, #8FC5D9 100%);
+    color: white;
+    box-shadow: var(--shadow-sm);
+}
+
+.btn-blue:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-white {
+    background: white;
+    color: var(--text-dark);
+    border: 2px solid var(--border);
+}
+
+.btn-white:hover {
+    border-color: var(--pink-baby);
+    color: var(--pink-baby);
+}
+
+.btn-sm {
+    padding: 6px 16px;
+    font-size: 13px;
+}
+
+.btn-danger {
+    background: var(--danger);
+    color: white;
+}
+
+/* =============== CARDS =============== */
+.card-coquette {
+    background: white;
+    border-radius: 20px;
+    padding: 24px;
+    box-shadow: var(--shadow-md);
+    margin-bottom: 20px;
+}
+
+/* =============== TOP HEADER =============== */
+.top-header {
+    background: linear-gradient(135deg, var(--pink-baby) 0%, var(--blue-baby) 100%);
+    color: white;
+    padding: 8px 0;
+    font-size: 13px;
+}
+
+/* =============== MAIN HEADER =============== */
+.main-header {
+    background: white;
+    padding: 16px 0;
+    box-shadow: var(--shadow-sm);
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--pink-baby) 0%, var(--blue-baby) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* =============== SEARCH BOX =============== */
+.search-box {
+    position: relative;
+    max-width: 500px;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 12px 48px 12px 20px;
+    border: 2px solid var(--border);
+    border-radius: 25px;
+    transition: all 0.3s;
+}
+
+.search-box input:focus {
+    outline: none;
+    border-color: var(--pink-baby);
+    box-shadow: 0 0 0 3px rgba(255, 182, 193, 0.1);
+}
+
+.search-box button {
+    position: absolute;
+    right: 4px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: linear-gradient(135deg, var(--pink-baby) 0%, var(--blue-baby) 100%);
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+/* =============== NAVIGATION =============== */
+.main-nav {
+    background: white;
+    padding: 12px 0;
+    border-top: 1px solid var(--border);
+}
+
+.main-nav a {
+    margin: 0 16px;
+    color: var(--text-dark);
+    font-weight: 500;
+    transition: all 0.3s;
+}
+
+.main-nav a:hover {
+    color: var(--pink-baby);
+}
+
+/* =============== CART ICON =============== */
+.cart-icon {
+    position: relative;
+    font-size: 24px;
+    color: var(--pink-baby);
+}
+
+.cart-badge {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: var(--danger);
+    color: white;
+    font-size: 11px;
+    padding: 2px 6px;
+    border-radius: 10px;
+    font-weight: 600;
+}
+
+/* =============== BOOK CARD =============== */
+.book-card {
+    background: white;
+    border-radius: 16px;
+    padding: 16px;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.3s;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.book-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+}
+
+.book-img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 12px;
+}
+
+.book-title {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 8px 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.book-title a {
+    color: var(--text-dark);
+}
+
+.book-author {
+    color: var(--text-gray);
+    font-size: 14px;
+    margin-bottom: 12px;
+}
+
+.book-price {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--pink-baby);
+    margin-bottom: 12px;
+}
+
+.original-price {
+    text-decoration: line-through;
+    color: var(--text-gray);
+    font-size: 14px;
+    margin-left: 8px;
+}
+
+.btn-add-cart {
+    width: 100%;
+    padding: 10px;
+    background: linear-gradient(135deg, var(--pink-baby) 0%, var(--blue-baby) 100%);
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s;
+}
+
+.btn-add-cart:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+/* =============== SECTION TITLE =============== */
+.section-title {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 24px;
+    background: linear-gradient(135deg, var(--pink-baby) 0%, var(--blue-baby) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* =============== BADGES =============== */
+.badge-pink {
+    background: var(--soft-pink);
+    color: var(--pink-baby);
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.badge-blue {
+    background: var(--soft-blue);
+    color: var(--blue-baby);
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.badge-success {
+    background: #F6FFED;
+    color: var(--success);
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+/* =============== FOOTER =============== */
+.footer {
+    background: white;
+    padding: 48px 0 24px;
+    margin-top: 64px;
+    box-shadow: 0 -4px 16px rgba(0,0,0,0.05);
+}
+
+.footer h5 {
+    color: var(--pink-baby);
+    margin-bottom: 16px;
+}
+
+.footer a {
+    display: block;
+    color: var(--text-gray);
+    margin-bottom: 8px;
+}
+
+.footer a:hover {
+    color: var(--pink-baby);
+}
+
+/* =============== ADMIN SIDEBAR =============== */
+.admin-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar {
+    width: 260px;
+    background: white;
+    box-shadow: var(--shadow-md);
+    padding: 24px 0;
+    position: fixed;
+    height: 100vh;
+    overflow-y: auto;
+}
+
+.sidebar h2 {
+    padding: 0 24px 16px;
+    background: linear-gradient(135deg, var(--pink-baby) 0%, var(--blue-baby) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.sidebar ul {
+    list-style: none;
+}
+
+.sidebar li {
+    margin: 4px 0;
+}
+
+.sidebar li.active a {
+    background: linear-gradient(135deg, var(--soft-pink) 0%, var(--soft-blue) 100%);
+    color: var(--pink-baby);
+    border-left: 4px solid var(--pink-baby);
+}
+
+.sidebar a {
+    display: block;
+    padding: 12px 24px;
+    color: var(--text-dark);
+    transition: all 0.3s;
+}
+
+.sidebar a:hover {
+    background: var(--soft-pink);
+    color: var(--pink-baby);
+}
+
+.admin-main {
+    flex: 1;
+    margin-left: 260px;
+    padding: 32px;
+}
+
+/* =============== ADMIN HEADER =============== */
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
+}
+
+.admin-header h2 {
+    background: linear-gradient(135deg, var(--pink-baby) 0%, var(--blue-baby) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* =============== STAT CARDS =============== */
+.stat-card {
+    background: white;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: var(--shadow-sm);
+    border-left: 4px solid var(--pink-baby);
+    transition: all 0.3s;
+}
+
+.stat-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+}
+
+.stat-card.blue {
+    border-left-color: var(--blue-baby);
+}
+
+.stat-card.green {
+    border-left-color: var(--success);
+}
+
+.stat-card h3 {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--pink-baby);
+    margin: 12px 0;
+}
+
+.stat-card p {
+    color: var(--text-gray);
+    font-size: 14px;
+}
+
+/* =============== TABLE =============== */
+.table-coquette {
+    width: 100%;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.table-coquette thead {
+    background: linear-gradient(135deg, var(--soft-pink) 0%, var(--soft-blue) 100%);
+}
+
+.table-coquette th {
+    padding: 16px;
+    text-align: left;
+    font-weight: 600;
+    color: var(--pink-baby);
+}
+
+.table-coquette td {
+    padding: 16px;
+    border-bottom: 1px solid var(--border);
+}
+
+.table-coquette tr:hover {
+    background: var(--soft-pink);
+}
+
+/* =============== FORM =============== */
+.form-control {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    transition: all 0.3s;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--pink-baby);
+    box-shadow: 0 0 0 3px rgba(255, 182, 193, 0.1);
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: var(--text-dark);
+}
+
+/* =============== ALERTS =============== */
+.alert {
+    padding: 16px 20px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+}
+
+.alert-success {
+    background: #F6FFED;
+    border-left: 4px solid var(--success);
+    color: var(--success);
+}
+
+.alert-danger {
+    background: #FFF1F0;
+    border-left: 4px solid var(--danger);
+    color: var(--danger);
+}
+
+.alert-info {
+    background: var(--soft-blue);
+    border-left: 4px solid var(--blue-baby);
+    color: var(--blue-baby);
+}
+
+/* =============== PAGINATION =============== */
+.pagination {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    margin-top: 32px;
+}
+
+.pagination a {
+    padding: 8px 16px;
+    background: white;
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    color: var(--text-dark);
+}
+
+.pagination a.active {
+    background: linear-gradient(135deg, var(--pink-baby) 0%, var(--blue-baby) 100%);
+    color: white;
+    border-color: transparent;
+}
+
+/* Pagination coquette */
+.pagination .page-link {
+  border-radius: 10px;
+}
+.pagination .page-item.active .page-link {
+  background: var(--pink-baby, #f9a8d4);
+  border-color: var(--pink-baby, #f9a8d4);
+  color: #fff;
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgba(249, 168, 212, .35);
+}
+.pagination .page-link:hover {
+  background: rgba(135, 206, 235, .15); /* baby blue nhạt */
+  border-color: rgba(135, 206, 235, .35);
+}
+
+/* =============== RESPONSIVE =============== */
+@media (max-width: 768px) {
+    .admin-main {
+        margin-left: 0;
+    }
+    
+    .sidebar {
+        transform: translateX(-100%);
+    }
+    
+    .book-img {
+        height: 200px;
+    }
+
+}
+
+/* ===== Nút 'Xem thêm' đồng bộ theme ===== */
+    .btn-see-more {
+        border: 2px solid var(--pink-baby);
+        background: #fff;
+        color: var(--pink-baby);
+        border-radius: 999px;
+        padding: 8px 18px;
+        font-weight: 600;
+        box-shadow: var(--shadow-sm);
+    }
+    .btn-see-more:hover {
+        background: linear-gradient(135deg, var(--soft-pink) 0%, var(--soft-blue) 100%);
+        color: var(--text-dark);
+        border-color: transparent;
+        transform: translateY(-1px);
+        box-shadow: var(--shadow-md);
+    }
+
+/* ===== Sticky Footer — Coquette (át ưu tiên) ===== */
+html, body { height: 100%; }
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto; /* đẩy footer xuống đáy khi nội dung ngắn */
+}
+
+/* đảm bảo footer full-width và không co lại */
+.footer {
+  flex-shrink: 0;
+  width: 100%;
+  background: #fff;
+  padding: 48px 0 24px;
+  margin-top: 64px;
+  box-shadow: 0 -4px 16px rgba(0,0,0,0.05);
+}
+
+/* nút “Xem thêm” đồng bộ chủ đề */
+.btn-see-more {
+  border: 2px solid var(--pink-baby);
+  background: #fff;
+  color: var(--pink-baby);
+  border-radius: 999px;
+  padding: 8px 18px;
+  font-weight: 600;
+  box-shadow: var(--shadow-sm);
+  transition: all .25s ease;
+}
+.btn-see-more:hover {
+  background: linear-gradient(135deg, var(--soft-pink) 0%, var(--soft-blue) 100%);
+  color: var(--text-dark);
+  border-color: transparent;
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+

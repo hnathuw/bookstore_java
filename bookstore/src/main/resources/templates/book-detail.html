@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" th:href="@{/images/favicon.ico}">
+    <title th:text="${(book != null ? book.title : 'Chi tiết sách') + ' - IceBearT'}">IceBearT</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" th:href="@{/css/coquette-style.css}" />
+</head>
+<body>
+<!-- Topbar -->
+<div class="top-header">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <small><i class="fas fa-heart"></i> IceBearT</small>
+            </div>
+            <div class="col-md-6 text-end">
+                <div sec:authorize="!isAuthenticated()">
+                    <a href="/login" class="text-white text-decoration-none"><i class="fas fa-sign-in-alt"></i> Đăng nhập</a>
+                    <span class="mx-2">|</span>
+                    <a href="/register" class="text-white text-decoration-none"><i class="fas fa-user-plus"></i> Đăng ký</a>
+                </div>
+                <div sec:authorize="isAuthenticated()">
+                    <span><i class="fas fa-user-circle"></i> <span sec:authentication="name"></span></span>
+                    <a href="/profile" class="text-white text-decoration-none ms-3"><i class="fas fa-user"></i> Tài khoản</a>
+                    <span sec:authorize="hasRole('ADMIN')">
+            <a href="/admin" class="text-white fw-bold text-decoration-none ms-3"><i class="fas fa-crown"></i> Admin</a>
+          </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Header -->
+<header class="main-header">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-3">
+                <a href="/" class="logo"><i class="fas fa-book-heart"></i> BookStore</a>
+            </div>
+            <div class="col-md-6">
+                <form th:action="@{/search}" method="get" class="search-box mx-auto">
+                    <input type="text" name="keyword" class="form-control" placeholder="Tìm kiếm sách..." />
+                    <button type="submit"><i class="fas fa-search"></i></button>
+                </form>
+            </div>
+            <div class="col-md-3 text-end">
+                <a href="/cart" class="cart-icon text-decoration-none">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="cart-badge" th:text="${cartItemCount ?: 0}">0</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Nav -->
+<nav class="main-nav">
+    <div class="container">
+        <a href="/"><i class="fas fa-home"></i> Trang chủ</a>
+        <a href="/books"><i class="fas fa-book"></i> Sách</a>
+        <a href="/policy/return"><i class="fas fa-undo"></i> Đổi trả</a>
+        <a href="/policy/privacy"><i class="fas fa-shield-alt"></i> Bảo mật</a>
+        <a href="/policy/terms"><i class="fas fa-file-contract"></i> Điều khoản</a>
+    </div>
+</nav>
+
+<!-- Breadcrumb -->
+<div class="bg-light">
+    <div class="container py-2">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a th:href="@{/}">Trang chủ</a></li>
+                <li class="breadcrumb-item"><a th:href="@{/books}">Sách</a></li>
+                <li class="breadcrumb-item">
+                    <a th:if="${book != null and book.category != null}"
+                       th:href="@{/books/c/{slug}(slug=${book.category.slug})}"
+                       th:text="${book.category.name}">Danh mục</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page" th:text="${book != null ? book.title : 'Chi tiết'}">Chi tiết</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+
+<!-- Content -->
+<div class="container my-5" th:if="${book != null}">
+    <div class="row g-4">
+        <div class="col-md-5">
+            <img th:src="${book.imageUrl}" class="w-100 rounded-4 shadow-sm" th:alt="${book.title}" />
+        </div>
+
+        <div class="col-md-7">
+            <h2 class="mb-2" th:text="${book.title}">Tên sách</h2>
+            <p class="text-muted"><i class="fas fa-feather-alt"></i> <span th:text="${book.author}">Tác giả</span></p>
+
+            <p class="mb-2">
+                <i class="fas fa-folder"></i>
+                <a class="text-decoration-none"
+                   th:if="${book.category != null}"
+                   th:href="@{/books/c/{slug}(slug=${book.category.slug})}"
+                   th:text="${book.category.name}">Danh mục</a>
+                <span th:if="${book.category == null}" class="text-muted">Chưa phân loại</span>
+            </p>
+
+            <!-- Giá -->
+            <div class="mb-3">
+        <span class="book-price me-2"
+              th:text="${#numbers.formatDecimal((book.discountPrice != null ? book.discountPrice : book.price), 0, 'COMMA', 0, 'POINT')} + '₫'">
+          100,000₫
+        </span>
+                <span class="original-price text-decoration-line-through text-muted"
+                      th:if="${book.discountPrice != null}"
+                      th:text="${#numbers.formatDecimal(book.price, 0, 'COMMA', 0, 'POINT')} + '₫'">150,000₫</span>
+            </div>
+
+            <p class="mb-3">
+                <i class="fas fa-box"></i> Còn lại:
+                <strong th:text="${book.stock}">0</strong> cuốn
+            </p>
+
+            <!-- Add to cart -->
+            <form th:action="@{/cart/add}" method="post" class="mb-4">
+                <input type="hidden" name="bookId" th:value="${book.id}" />
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+                <div class="input-group mb-3" style="max-width: 240px;">
+                    <button class="btn btn-outline-secondary" type="button"
+                            onclick="const i=this.parentElement.querySelector('input[type=number]'); i.stepDown(); i.dispatchEvent(new Event('change'));">-</button>
+                    <input type="number" name="quantity" value="1" min="1" class="form-control text-center" />
+                    <button class="btn btn-outline-secondary" type="button"
+                            onclick="const i=this.parentElement.querySelector('input[type=number]'); i.stepUp(); i.dispatchEvent(new Event('change'));">+</button>
+                </div>
+                <button type="submit" class="btn btn-pink"
+                        th:disabled="${book.stock != null and book.stock <= 0}">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span th:text="${(book.stock != null and book.stock <= 0) ? 'Hết hàng' : 'Thêm vào giỏ'}">Thêm vào giỏ</span>
+                </button>
+            </form>
+
+            <div class="card-coquette">
+                <h5 class="mb-2">Mô tả</h5>
+                <p class="mb-0" th:text="${book.description}">Mô tả sách</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sách liên quan -->
+    <div class="mt-5" th:if="${relatedBooks != null and !relatedBooks.isEmpty()}">
+        <h4 class="section-title mb-3"><i class="fas fa-link"></i> Sách liên quan</h4>
+        <div class="row">
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-4" th:each="b : ${relatedBooks}">
+                <div class="book-card h-100">
+                    <a th:href="@{/books/{id}(id=${b.id})}">
+                        <img th:src="${b.imageUrl}" class="book-img" th:alt="${b.title}" />
+                    </a>
+                    <h6 class="book-title mt-2 mb-1">
+                        <a class="text-decoration-none" th:href="@{/books/{id}(id=${b.id})}" th:text="${b.title}">Tên sách</a>
+                    </h6>
+                    <div class="text-muted small mb-2" th:text="${b.author}">Tác giả</div>
+                    <div>
+            <span class="book-price"
+                  th:text="${#numbers.formatDecimal((b.discountPrice != null ? b.discountPrice : b.price), 0, 'COMMA', 0, 'POINT')} + '₫'">0₫</span>
+                        <span class="original-price text-muted text-decoration-line-through ms-2"
+                              th:if="${b.discountPrice != null}"
+                              th:text="${#numbers.formatDecimal(b.price, 0, 'COMMA', 0, 'POINT')} + '₫'">0₫</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 mb-4">
+                <h5><i class="fas fa-book-heart"></i> Về chúng tôi</h5>
+                <p>Nhà sách trực tuyến uy tín</p>
+            </div>
+            <div class="col-md-3 mb-4">
+                <h5><i class="fas fa-link"></i> Liên kết</h5>
+                <a href="/">Trang chủ</a>
+                <a href="/books">Sách</a>
+            </div>
+            <div class="col-md-3 mb-4">
+                <h5><i class="fas fa-shield-alt"></i> Chính sách</h5>
+                <a href="/policy/return">Đổi trả</a>
+                <a href="/policy/privacy">Bảo mật</a>
+                <a href="/policy/terms">Điều khoản</a>
+            </div>
+            <div class="col-md-3 mb-4">
+                <h5><i class="fas fa-phone"></i> Liên hệ</h5>
+                <p><i class="fas fa-phone"></i> 1900-8888</p>
+            </div>
+        </div>
+        <hr />
+        <div class="text-center">
+            <p class="mb-0"><i class="fas fa-heart" style="color: var(--pink-baby);"></i> © 2025 IceBearT</p>
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

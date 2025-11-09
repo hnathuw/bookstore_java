@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${title + ' - BookStore'}">IceBearT</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/css/coquette-style.css}">
+</head>
+<body><div class="top-header">
+    <div class="container text-center"><small><i class="fas fa-heart"></i> IceBearT</small></div>
+</div>
+<header class="main-header">
+    <div class="container text-center"><a href="/" class="logo"><i class="fas fa-book-heart"></i> IceBearT</a></div>
+</header>
+<nav class="main-nav">
+    <div class="container text-center">
+        <a href="/"><i class="fas fa-home"></i> Trang chủ</a>
+        <a href="/books"><i class="fas fa-book"></i> Sách</a>
+        <a href="/policy/return"><i class="fas fa-undo"></i> Đổi trả</a>
+        <a href="/policy/privacy"><i class="fas fa-shield-alt"></i> Bảo mật</a>
+        <a href="/policy/terms"><i class="fas fa-file-contract"></i> Điều khoản</a>
+    </div>
+</nav>
+<div class="container my-5">
+    <div class="card-coquette" style="max-width: 900px; margin: 0 auto;">
+        <h1 class="section-title text-center"><i class="fas fa-shield-alt"></i> Chính Sách Bảo Mật</h1>
+        <p class="lead text-center">Cam kết bảo vệ thông tin cá nhân của bạn</p>
+        
+        <h3><i class="fas fa-database"></i> Thu thập thông tin:</h3>
+        <ul>
+            <li>Họ tên, email, số điện thoại</li>
+            <li>Địa chỉ giao hàng</li>
+            <li>Lịch sử mua hàng</li>
+        </ul>
+        
+        <h3><i class="fas fa-lock"></i> Bảo mật:</h3>
+        <ul>
+            <li>Mã hóa SSL/TLS</li>
+            <li>Firewall & Backup</li>
+            <li>Giới hạn truy cập</li>
+        </ul>
+        
+        <h3><i class="fas fa-user-cog"></i> Quyền của bạn:</h3>
+        <ul>
+            <li>Xem, sửa, xóa thông tin</li>
+            <li>Từ chối email marketing</li>
+            <li>Tải xuống dữ liệu</li>
+        </ul>
+        
+        <div class="alert alert-info">
+            <h5><i class="fas fa-envelope"></i> Liên hệ: privacy@icebeart.com</h5>
+        </div>
+        
+        <div class="text-center mt-4">
+            <a href="/" class="btn btn-pink"><i class="fas fa-home"></i> Về trang chủ</a>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script></body></html>
