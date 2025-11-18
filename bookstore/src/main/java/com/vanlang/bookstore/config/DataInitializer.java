@@ -15,18 +15,22 @@ public class DataInitializer implements CommandLineRunner {
     private final PasswordEncoder passwordEncoder;
 
     @Override
-    public void run(String... args) throws Exception {
-        // Tạo admin nếu chưa có
-        if (!userRepository.existsByEmail("admin@gmail.com")) {
-            User admin = new User();
-            admin.setEmail("admin@gmail.com");
-            admin.setUsername("admin");
-            admin.setFullName("Site Admin");
-            admin.setPassword(passwordEncoder.encode("admin123"));
-            admin.setRole(User.Role.ADMIN);
-            admin.setEnabled(true);
-            userRepository.save(admin);
+    public void run(String... args) {
+        try {
+            // Tạo admin nếu chưa có
+            if (!userRepository.existsByEmail("admin@gmail.com")) {
+                User admin = new User();
+                admin.setEmail("admin@gmail.com");
+                admin.setUsername("admin");
+                admin.setFullName("Site Admin");
+                admin.setPassword(passwordEncoder.encode("admin123"));
+                admin.setRole(User.Role.ADMIN);
+                admin.setEnabled(true);
+                userRepository.save(admin);
+            }
+        } catch (Exception e) {
+            // Không cho app crash nếu DB đang lỗi / hết connection
+            System.out.println("WARN: DataInitializer skipped: " + e.getMessage());
         }
-
     }
 }
